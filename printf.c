@@ -12,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int nbytes = 0, i = 0;
+	int nbytes = 0, i = 0, z;
 	char *x;
 	char y;
 
@@ -22,11 +22,11 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			switch(format[i])
+			switch(format[i++])
 			{
 				case 'c':
-
-					write(1, va_arg(ap, int),1);
+					z = va_arg(ap, int);
+					write(1, &z,1);
 					nbytes++;
 					break;
 				case 's':
@@ -38,6 +38,7 @@ int _printf(const char *format, ...)
 					y = '%';
 					write(1, &y, 1);
 					nbytes++;
+					break;
 				default:
 					continue;
 					
@@ -48,6 +49,7 @@ int _printf(const char *format, ...)
 		{
 			write(1, format + i, 1);
 				nbytes++;
+				i++;
 		}
 	}
 	return (nbytes);
