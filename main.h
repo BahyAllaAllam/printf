@@ -40,7 +40,7 @@ typedef struct parameters
 	unsigned int minus_flag     :1;
 
 	unsigned int width;
-	unsigned int percision;
+	unsigned int precision;
 
 	unsigned int h_modifier     :1;
 	unsigned int l_modifier     :1;
