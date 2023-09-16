@@ -1,45 +1,4 @@
-#include <unistd.h>
-#include <stdarg.h>
-#include <string.h>
-
-/**
- * format_checker - takes a format specifier and prints its corresponding variable
- *
- * @i: i
- * @format: format specifier
- * @ap: va_list
- * @nbytes: number of chars printed
- *
- * Return: 1 if valid format specifier
- * 	0 otherwise
- */
-int format_checker(int i, const char *format, va_list ap, int *nbytes)
-{
-	int z;
-	char *x, y = '%';
-
-	switch (format[i++])
-	{
-		case 'c':
-			z = va_arg(ap, int);
-			write(1, &z, 1);
-			*nbytes += 1;
-			break;
-		case 's':
-			x = va_arg(ap, char *);
-			write(1, x, strlen(x));
-			*nbytes += strlen(x);
-			break;
-		case '%':
-			write(1, &y, 1);
-			*nbytes += 1;
-			break;
-		default:
-			return (0);
-	}
-	return (1);
-}
-
+#include "main.h"
 
 /**
  * _printf - printf function
@@ -48,28 +7,49 @@ int format_checker(int i, const char *format, va_list ap, int *nbytes)
  *
  * Return: number of chars printed
  */
+
 int _printf(const char *format, ...)
 {
+	int sum = 0;
 	va_list ap;
-	int nbytes = 0, i = 0, x;
+	char *p, *start;
+	params_t params = PARAMS_INIT;
+
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
 
 	va_start(ap, format);
-	while (format && format[i])
+	for (p = (char *)format; *p; p++)
 	{
-		if (format[i] == '%')
+		init_params(&params, ap);
+		if (*p != '%')
 		{
-			i++;
-			x = format_checker(i, format, ap, &nbytes);
-			if (x == 0)
-				continue;
-			i++;
+			sum += _putchar(*p);;
+			continue;
+		}
+		start = p;
+		p++;
+
+		while (get_flag(p, &params))
+			p++;
+		p = get_width(p, &params, ap);
+		p = get_percision(p, &params, ap);
+
+		if (get_modifier(p, &params))
+			p++;
+		if (!get_specifier(p))
+		{
+			sum += print_from_to
+				(start, p, 
+				 params.l_modifier || 
+				 params.h_modifier ? p - 1 : 0);
 		}
 		else
-		{
-			write(1, format + i, 1);
-				nbytes++;
-				i++;
-		}
+			sum += get_print_func(p, ap, &params);
 	}
-	return (nbytes);
+	_putchar(BUF_FLUSH);
+	va_end(ap);
+	return (sum);
 }
