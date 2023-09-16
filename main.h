@@ -17,6 +17,19 @@
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED  2
 
+/**
+ * struct parameters - struct parameters
+ * @unsign: unsign
+ * @plus_flag: plus_flag
+ * @space_flag: space_flag
+ * @hashtag_flag: hashtag_flag
+ * @zero_flag: zero_flag
+ * @minus_flag: minus_flag
+ * @width: width
+ * @percision: percision
+ * @h_modifier: h_modifier
+ * @l_modifier: l_modifier
+*/
 typedef struct parameters
 {
 	unsigned int unsign         :1;
@@ -33,6 +46,11 @@ typedef struct parameters
 	unsigned int l_modifier     :1;
 } params_t;
 
+/**
+ * struct specifier - struct specifier
+ * @specifier: specifier
+ * @f: f
+*/
 typedef struct specifier
 {
 	char *specifier;
@@ -63,7 +81,7 @@ int print_HEX(va_list ap, params_t *params);
 int print_binary(va_list ap, params_t *params);
 int print_octal(va_list ap, params_t *params);
 
-int print_from_to(char *start, char *stop, char *excute);
+int print_from_to(char *start, char *stop, char *except);
 int print_rev(va_list ap, params_t *params);
 int print_rot13(va_list ap, params_t *params);
 
