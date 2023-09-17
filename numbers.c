@@ -45,7 +45,7 @@ char *convert(long int n, int b, int f, params_t *params)
  *
  * Return: int
 */
-int print_unsigned(va_list list, parms_t *params)
+int print_unsigned(va_list list, params_t *params)
 {
 	unsigned long a;
 

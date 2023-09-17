@@ -28,6 +28,6 @@ char *get_percision(char *ptr, params_t *params, va_list list)
 			i = i * 10 + (*ptr++ - '0');
 		}
 	}
-	(*params).percision = i;
+	(*params).precision = i;
 	return (ptr);
 }
