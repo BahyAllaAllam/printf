@@ -26,7 +26,7 @@
  * @zero_flag: zero_flag
  * @minus_flag: minus_flag
  * @width: width
- * @percision: percision
+ * @precision: precision
  * @h_modifier: h_modifier
  * @l_modifier: l_modifier
 */

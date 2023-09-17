@@ -1,9 +1,11 @@
 #include "main.h"
 
 /**
- * init_params: init_params
+ * init_params - init_params
  * @params: params
  * @ap: ap
+ *
+ * Return: void
 */
 
 void init_params(params_t *params, va_list ap)
@@ -15,7 +17,7 @@ void init_params(params_t *params, va_list ap)
 	(*params).zero_flag = 0;
 	(*params).minus_flag = 0;
 	(*params).width = 0;
-	(*params).percision = UNIT_MAX;
+	(*params).precision = UNIT_MAX;
 	(*params).h_modifier = 0;
 	(*params).l_modifier = 0;
 	(void)ap;
