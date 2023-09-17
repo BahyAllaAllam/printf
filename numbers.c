@@ -19,7 +19,7 @@ char *convert(long int n, int b, int f, params_t *params)
 	unsigned long num = n;
 	(void)params;
 
-	if (!(flags & CONVERT_UNSIGNED) && n < 0)
+	if (!(f & CONVERT_UNSIGNED) && n < 0)
 	{
 		num = -n;
 		s = '-';
@@ -30,11 +30,11 @@ char *convert(long int n, int b, int f, params_t *params)
 
 	do	{
 		*--p = ar[n % b];
-		n /= b;
+		num /= b;
 	} while (n != 0);
 
-	if (sign)
-		*--p = sign;
+	if (s)
+		*--p = s;
 	return (p);
 }
 
@@ -45,14 +45,14 @@ char *convert(long int n, int b, int f, params_t *params)
  *
  * Return: int
 */
-int print_unsigned(va_list list, parms_t *params)
+int print_unsigned(va_list list, params_t *params)
 {
 	unsigned long a;
 
 	if ((*params).l_modifier)
 		a = (unsigned long)va_arg(list, unsigned long);
 	else if ((*params).h_modifier)
-		a = (unsigned short int)va_arg(list, unsigned short int);
+		a = (unsigned short int)va_arg(list, unsigned int);
 	else
 		a = (unsigned int)va_arg(list, unsigned int);
 	(*params).unsign = 1;

@@ -8,7 +8,7 @@
  * Return: formated function
  */
 
-int (*get_specifier(char *s))(va_list ap, parmas_t *params)
+int (*get_specifier(char *s))(va_list ap, params_t *params)
 {
 	specifier_t specifiers[] = {
 		{"c", print_char},
@@ -75,7 +75,7 @@ int get_flag(char *s, params_t *params)
 			i = params->plus_flag = 1;
 			break;
 		case ' ':
-			i = params->space flag = 1;
+			i = params->space_flag = 1;
 			break;
 		case '#':
 			i = params->hashtag_flag = 1;
@@ -111,7 +111,7 @@ int get_modifier(char *s, params_t *params)
 			i = params->h_modifier = 1;
 			break;
 		case 'l':
-			i params->1_modifier = 1;
+			i = params->l_modifier = 1;
 			break;
 	}
 	return (i);
@@ -139,8 +139,8 @@ char *get_width(char *s, params_t *params, va_list ap)
 	}
 	else
 	{
-		while (isdigit(*s))
-			d = d * 10 + (*S++ - '0');
+		while (_isdigit(*s))
+			d = d * 10 + (*s++ - '0');
 	}
 	params->width = d;
 	return (s);

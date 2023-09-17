@@ -41,7 +41,7 @@ int print_rev(va_list list, params_t *params)
 		for (len = 0; *s; s++)
 			len++;
 		s--;
-		for (; len > 0; len--, str--)
+		for (; len > 0; len--, s--)
 			total += _putchar(*s);
 	}
 	return (total);

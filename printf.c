@@ -12,7 +12,7 @@ int _printf(const char *format, ...)
 {
 	int sum = 0;
 	va_list ptr;
-	char *p, *st;
+	char *p, *start;
 	params_t params = PARAMS_INIT;
 
 	if (!format || (format[0] == '%' && !format[1]))
@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 		while (get_flag(p, &params))
 			p++;
 		p = get_width(p, &params, ptr);
-		p = get_percision(p, &params, ptr);
+		p = get_precision(p, &params, ptr);
 		if (get_modifier(p, &params))
 			p++;
 		if (!get_specifier(p))
@@ -42,9 +42,9 @@ int _printf(const char *format, ...)
 					params.l_modifier || params.h_modifier ? p - 1 : 0);
 		}
 		else
-			sum += get_print_func(p, ap, &params);
+			sum += get_print_func(p, ptr, &params);
 	}
 	_putchar(BUF_FLUSH);
-	va_end(ap);
+	va_end(ptr);
 	return (sum);
 }
