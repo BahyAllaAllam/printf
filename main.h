@@ -86,10 +86,10 @@ int print_rev(va_list list, flags_t *flags);
 int print_rot13(va_list list, flags_t *flags);
 
 int _isdigit(int x);
-int _strlen(char *str);
-int print_number(char *str, flags_t *flags);
-int print_number_right_shift(char *str, flags_t *flags);
-int print_number_left_shift(char *str, flags_t *flags);
+int _strlen(char *s);
+int print_number(char *s, flags_t *flags);
+int print_number_right_shift(char *s, flags_t *flags);
+int print_number_left_shift(char *s, flags_t *flags);
 
 void init_params(flags_t *flags, va_list list);
 

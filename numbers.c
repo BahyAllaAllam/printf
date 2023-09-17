@@ -5,12 +5,12 @@
  * @n: n
  * @b: b
  * @f: f
- * @params: params
+ * @flags: params
  *
  * Return: string
 */
 
-char *convert(long int n, int b, int f, params_t *params)
+char *convert(long int n, int b, int f, flags_t *flags)
 {
 	static char *ar;
 	static char buf[50];
@@ -41,40 +41,40 @@ char *convert(long int n, int b, int f, params_t *params)
 /**
  * print_unsigned - print_unsigned
  * @list: list
- * @params: params
+ * @flags: flags
  *
  * Return: int
 */
-int print_unsigned(va_list list, params_t *params)
+int print_unsigned(va_list list, flags_t *flags)
 {
 	unsigned long a;
 
-	if ((*params).l_modifier)
+	if ((*flags).l_modifier)
 		a = (unsigned long)va_arg(list, unsigned long);
-	else if ((*params).h_modifier)
+	else if ((*flags).h_modifier)
 		a = (unsigned short int)va_arg(list, unsigned int);
 	else
 		a = (unsigned int)va_arg(list, unsigned int);
-	(*params).unsign = 1;
-	return (print_number(convert(a, 10, CONVERT_UNSIGNED, params), params));
+	(*flags).unsign = 1;
+	return (print_number(convert(a, 10, CONVERT_UNSIGNED, flags), flags));
 }
 
 /**
  * print_address - print_address
  * @list: list
- * @params: params
+ * @flags: flags
  *
  * Return: int
 */
-int print_address(va_list list, params_t *params)
+int print_address(va_list list, flags_t *flags)
 {
 	unsigned long int i = va_arg(list, unsigned long int);
 	char *s;
 
 	if (!i)
 		return (_puts("(nill)"));
-	s = convert(i, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
+	s = convert(i, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, flags);
 	*--s = 'x';
 	*--s = '0';
-	return (print_number(s, params));
+	return (print_number(s, flags));
 }

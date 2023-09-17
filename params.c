@@ -2,23 +2,23 @@
 
 /**
  * init_params - init_params
- * @params: params
+ * @flags: flags
  * @ap: ap
  *
  * Return: void
 */
 
-void init_params(params_t *params, va_list ap)
+void init_params(flags_t *flags, va_list list)
 {
-	(*params).unsign = 0;
-	(*params).plus_flag = 0;
-	(*params).space_flag = 0;
-	(*params).hashtag_flag = 0;
-	(*params).zero_flag = 0;
-	(*params).minus_flag = 0;
-	(*params).width = 0;
-	(*params).precision = UINT_MAX;
-	(*params).h_modifier = 0;
-	(*params).l_modifier = 0;
-	(void)ap;
+	(*flags).unsign = 0;
+	(*flags).plus_flag = 0;
+	(*flags).space_flag = 0;
+	(*flags).hashtag_flag = 0;
+	(*flags).zero_flag = 0;
+	(*flags).minus_flag = 0;
+	(*flags).width = 0;
+	(*flags).precision = UINT_MAX;
+	(*flags).h_modifier = 0;
+	(*flags).l_modifier = 0;
+	(void)list;
 }

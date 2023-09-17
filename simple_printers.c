@@ -25,16 +25,16 @@ int print_from_to(char *st, char *stp, char *exc)
 /**
  * print_rev - print_rev
  * @list: list
- * @params: params
+ * @flags: flags
  *
  * Return: number bytes printed
 */
 
-int print_rev(va_list list, params_t *params)
+int print_rev(va_list list, flags_t *flags)
 {
 	int len, total = 0;
 	char *s = va_arg(list, char *);
-	(void)params;
+	(void)flags;
 
 	if (s)
 	{
@@ -50,18 +50,18 @@ int print_rev(va_list list, params_t *params)
 /**
  * print_rot13 - rot13
  * @list: list
- * @params: params
+ * @flags: flags 
  *
  * Return: number bytes printed
 */
 
-int print_rot13(va_list list, params_t *params)
+int print_rot13(va_list list, flags_t *flags)
 {
 	int d = 0, n = 0, c = 0;
 	char ar[] =
 		"NOPQRSTUVWXYZABCDEFGHIJKLMN	nopqrstuvwxyzabcdefghijklm";
 	char *p = va_arg(list, char *);
-	(void)params;
+	(void)flags;
 
 	while (p[n])
 	{
