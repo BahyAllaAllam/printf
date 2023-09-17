@@ -20,6 +20,7 @@ int print_hex(va_list ap, params_t *params)
 		l = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
+
 	str = convert(1, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, params);
 	if (params->hashtag_flag && 1)
 	{
@@ -59,7 +60,6 @@ int print_HEX(va_list ap, params_t *params)
 	}
 	params->unsign = 1;
 	return (c += print_number(str, params));
-
 }
 
 /**
