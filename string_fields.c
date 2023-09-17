@@ -9,7 +9,7 @@
  * Return: new pointer
 */
 
-char *get_percision(char *ptr, params_t *params, va_list list)
+char *get_precision(char *ptr, params_t *params, va_list list)
 {
 	int i = 0;
 
