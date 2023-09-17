@@ -30,7 +30,7 @@
  * @h_modifier: h_modifier
  * @l_modifier: l_modifier
 */
-typedef struct parameters
+typedef struct flag_parameters
 {
 	unsigned int unsign         :1;
 	unsigned int plus_flag      :1;
@@ -44,56 +44,56 @@ typedef struct parameters
 
 	unsigned int h_modifier     :1;
 	unsigned int l_modifier     :1;
-} params_t;
+} flags_t;
 
 /**
  * struct specifier - struct specifier
  * @specifier: specifier
  * @f: f
 */
-typedef struct specifier
+typedef struct specifiers
 {
 	char *specifier;
-	int (*f)(va_list, params_t *);
-} specifier_t;
+	int (*f)(va_list, flags_t *);
+} spec_t;
 
-int _puts(char *str);
-int _putchar(int c);
+int _puts(char *st);
+int _putchar(int ch);
 
-int print_char(va_list ap, params_t *params);
-int print_int(va_list ap, params_t *params);
-int print_string(va_list ap, params_t *params);
-int print_percent(va_list ap, params_t *params);
-int print_S(va_list ap, params_t *params);
+int print_char(va_list list, flags_t *flags);
+int print_int(va_list list, flags_t *flags);
+int print_string(va_list list, flags_t *flags);
+int print_percent(va_list list, flags_t *flags);
+int print_S(va_list list, flags_t *flags);
 
-char *convert(long int n, int b, int f, params_t *params);
-int print_unsigned(va_list list, params_t *params);
-int print_address(va_list list, params_t *params);
+char *convert(long int n, int b, int f, flags_t *flags);
+int print_unsigned(va_list list, flags_t *flags);
+int print_address(va_list list, flags_t *flags);
 
-int (*get_specifier(char *s))(va_list ap, params_t *params);
-int get_print_func(char *s, va_list ap, params_t *params);
-int get_flag(char *s, params_t *params);
-int get_modifier(char *s, params_t *params);
-char *get_width(char *s, params_t *params, va_list ap);
+int (*get_specifier(char *s))(va_list list, flags_t *flags);
+int get_print_func(char *s, va_list list, flags_t *flags);
+int get_flag(char *s, flags_t *flags);
+int get_modifier(char *s, flags_t *flags);
+char *get_width(char *s, flags_t *flags, va_list list);
 
-int print_hex(va_list ap, params_t *params);
-int print_HEX(va_list ap, params_t *params);
-int print_binary(va_list ap, params_t *params);
-int print_octal(va_list ap, params_t *params);
+int print_hex(va_list list, flags_t *flags);
+int print_HEX(va_list list, flags_t *flags);
+int print_binary(va_list list, flags_t *flags);
+int print_octal(va_list list, flags_t *flags);
 
 int print_from_to(char *st, char *stp, char *exc);
-int print_rev(va_list list, params_t *params);
-int print_rot13(va_list list, params_t *params);
+int print_rev(va_list list, flags_t *flags);
+int print_rot13(va_list list, flags_t *flags);
 
-int _isdigit(int c);
-int _strlen(char *s);
-int print_number(char *str, params_t *params);
-int print_number_right_shift(char *str, params_t *params);
-int print_number_left_shift(char *str, params_t *params);
+int _isdigit(int x);
+int _strlen(char *str);
+int print_number(char *str, flags_t *flags);
+int print_number_right_shift(char *str, flags_t *flags);
+int print_number_left_shift(char *str, flags_t *flags);
 
-void init_params(params_t *params, va_list ap);
+void init_params(flags_t *flags, va_list list);
 
-char *get_precision(char *ptr, params_t *params, va_list list);
+char *get_precision(char *ptr, flags_t *flags, va_list list);
 
 int _printf(const char *format, ...);
 

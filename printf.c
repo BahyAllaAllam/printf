@@ -6,45 +6,45 @@
  * @format: string to be formated
  *
  * Return: number of chars printed
- */
-
+*/
 int _printf(const char *format, ...)
 {
-	int sum = 0;
-	va_list ptr;
-	char *p, *start;
-	params_t params = PARAMS_INIT;
-
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	va_start(ptr, format);
-	for (p = (char *)format; *p; p++)
+
+	int total = 0;
+	char *ptr, *sta;
+	flags_t flags = PARAMS_INIT;
+
+	va_list list;
+	va_start(list, format);
+	for (ptr = (char *)format; *ptr; ptr++)
 	{
-		init_params(&params, ptr);
-		if (*p != '%')
+		init_params(&flags, list);
+		if (*ptr != '%')
 		{
-			sum += _putchar(*p);
+			total += _putchar(*ptr);
 			continue;
 		}
-		start = p;
-		p++;
-		while (get_flag(p, &params))
-			p++;
-		p = get_width(p, &params, ptr);
-		p = get_precision(p, &params, ptr);
-		if (get_modifier(p, &params))
-			p++;
-		if (!get_specifier(p))
+		sta = ptr;
+		ptr++;
+		while (get_flag(ptr, &flags))
+			ptr++;
+		ptr = get_width(ptr, &flags, list);
+		ptr = get_precision(ptr, &flags, list);
+		if (get_modifier(ptr, &flags))
+			ptr++;
+		if (!get_specifier(ptr))
 		{
-			sum += print_from_to(start, p,
-					params.l_modifier || params.h_modifier ? p - 1 : 0);
+			total += print_from_to(sta, ptr,
+					flags.l_modifier || flags.h_modifier ? ptr - 1 : 0);
 		}
 		else
-			sum += get_print_func(p, ptr, &params);
+			total += get_print_func(ptr, list, &flags);
 	}
 	_putchar(BUF_FLUSH);
-	va_end(ptr);
-	return (sum);
+	va_end(list);
+	return (total);
 }
