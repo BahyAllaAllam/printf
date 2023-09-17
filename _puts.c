@@ -3,6 +3,8 @@
 /**
  * _putchar - putchar
  * @c: c
+ *
+ * Return: int 1;
 */
 int _putchar(int c)
 {
@@ -24,6 +26,8 @@ int _putchar(int c)
 /**
  * _puts - puts
  * @str: str
+ *
+ * Return: int
 */
 int _puts(char *str)
 {
