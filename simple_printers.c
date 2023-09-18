@@ -50,7 +50,7 @@ int print_rev(va_list list, flags_t *flags)
 /**
  * print_rot13 - rot13
  * @list: list
- * @flags: flags 
+ * @flags: flags
  *
  * Return: number bytes printed
 */

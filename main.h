@@ -18,7 +18,7 @@
 #define CONVERT_UNSIGNED  2
 
 /**
- * struct parameters - struct parameters
+ * struct flag_parameters - struct parameters
  * @unsign: unsign
  * @plus_flag: plus_flag
  * @space_flag: space_flag
@@ -51,7 +51,7 @@ typedef struct flag_parameters
  * @specifier: specifier
  * @f: f
 */
-typedef struct specifiers
+typedef struct specifier
 {
 	char *specifier;
 	int (*f)(va_list, flags_t *);
@@ -70,7 +70,7 @@ char *convert(long int n, int b, int f, flags_t *flags);
 int print_unsigned(va_list list, flags_t *flags);
 int print_address(va_list list, flags_t *flags);
 
-int (*get_specifier(char *str))(va_list list, flags_t *flags);
+int (*get_specifier(char *ptr))(va_list list, flags_t *flags);
 int get_print_func(char *str, va_list list, flags_t *flags);
 int get_flag(char *str, flags_t *flags);
 int get_modifier(char *str, flags_t *flags);

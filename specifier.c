@@ -3,14 +3,14 @@
 /**
  * get_specifier - return format
  *
- * @s: format string
+ * @ptr: format string
  *
  * Return: formated function
- */
+*/
 
-int (*get_specifier(char *str))(va_list list, flags_t *flags)
+int (*get_specifier(char *ptr))(va_list list, flags_t *flags)
 {
-	spec_t specifiers[] = {
+	spec_t speci[] = {
 		{"c", print_char},
 		{"s", print_string},
 		{"i", print_int},
@@ -22,16 +22,16 @@ int (*get_specifier(char *str))(va_list list, flags_t *flags)
 		{"x", print_hex},
 		{"X", print_HEX},
 		{"p", print_address},
-		{"s", print_S},
+		{"S", print_S},
 		{"r", print_rev},
 		{"R", print_rot13},
 		{NULL, NULL}
-	} speci;
+	};
 	int i = 0;
 
 	while (speci[i].speci)
 	{
-		if (*str == speci[i].speci[0])
+		if (*ptr == speci[i].speci[0])
 			return (speci[i].f);
 		i++;
 	}
@@ -40,6 +40,7 @@ int (*get_specifier(char *str))(va_list list, flags_t *flags)
 
 /**
 * get_print_func - finds the format func
+*
 * @str: the format string
 * @list: argument pointer
 * @flags: the parameters struct
@@ -92,6 +93,7 @@ int get_flag(char *str, flags_t *flags)
 }
 /**
 * get_modifier - finds the modifier func.
+*
 * @str: the format string
 * @flags: the parameters struct.
 *

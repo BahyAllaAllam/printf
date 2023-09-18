@@ -2,7 +2,7 @@
 
 /**
  * _putchar - putchar
- * @t: t 
+ * @t: t
  *
  * Return: int 1;
 */

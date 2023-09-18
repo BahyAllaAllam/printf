@@ -3,7 +3,7 @@
 /**
  * init_params - init_params
  * @flags: flags
- * @ap: ap
+ * @list: list
  *
  * Return: void
 */

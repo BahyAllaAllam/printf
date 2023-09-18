@@ -19,7 +19,9 @@ int _printf(const char *format, ...)
 	flags_t flags = PARAMS_INIT;
 
 	va_list list;
+
 	va_start(list, format);
+
 	for (ptr = (char *)format; *ptr; ptr++)
 	{
 		init_params(&flags, list);

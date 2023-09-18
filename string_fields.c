@@ -1,15 +1,15 @@
 #include "main.h"
 
 /**
- * get_percision - get percision
+ * get_precision - get percision
  * @ptr: ptr
- * @params: params
+ * @flags: flags
  * @list: list
  *
  * Return: new pointer
 */
 
-char *get_precision(char *ptr, params_t *params, va_list list)
+char *get_precision(char *ptr, flags_t *flags, va_list list)
 {
 	int i = 0;
 
