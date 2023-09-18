@@ -2,23 +2,23 @@
 
 /**
  * _putchar - putchar
- * @c: c
+ * @t: t 
  *
  * Return: int 1;
 */
-int _putchar(int c)
+int _putchar(int t)
 {
 	static int i;
 	static char buf[OUTPUT_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
+	if (t == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
 	{
 		write(1, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
+	if (t != BUF_FLUSH)
 	{
-		buf[i++] = c;
+		buf[i++] = t;
 	}
 	return (1);
 }
@@ -31,11 +31,11 @@ int _putchar(int c)
 */
 int _puts(char *str)
 {
-	char *a = str;
+	char *i = str;
 
 	while (*str)
 	{
 		_putchar(*str++);
 	}
-	return (str - a);
+	return (str - i);
 }

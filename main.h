@@ -57,8 +57,8 @@ typedef struct specifiers
 	int (*f)(va_list, flags_t *);
 } spec_t;
 
-int _puts(char *st);
-int _putchar(int ch);
+int _puts(char *str);
+int _putchar(int t);
 
 int print_char(va_list list, flags_t *flags);
 int print_int(va_list list, flags_t *flags);
@@ -70,11 +70,11 @@ char *convert(long int n, int b, int f, flags_t *flags);
 int print_unsigned(va_list list, flags_t *flags);
 int print_address(va_list list, flags_t *flags);
 
-int (*get_specifier(char *s))(va_list list, flags_t *flags);
-int get_print_func(char *s, va_list list, flags_t *flags);
-int get_flag(char *s, flags_t *flags);
-int get_modifier(char *s, flags_t *flags);
-char *get_width(char *s, flags_t *flags, va_list list);
+int (*get_specifier(char *str))(va_list list, flags_t *flags);
+int get_print_func(char *str, va_list list, flags_t *flags);
+int get_flag(char *str, flags_t *flags);
+int get_modifier(char *str, flags_t *flags);
+char *get_width(char *str, flags_t *flags, va_list list);
 
 int print_hex(va_list list, flags_t *flags);
 int print_HEX(va_list list, flags_t *flags);

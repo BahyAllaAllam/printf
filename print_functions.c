@@ -3,136 +3,136 @@
 /**
 * print_char - prints character
 *
-* @ap: argument pointer
-* @params: the parameters struct.
+* @list: argument pointer
+* @flags: the parameters struct.
 *
 *Return: number chars printed.
 */
 
-int print_char(va_list ap, params_t *params)
+int print_char(va_list list, flags_t *flags)
 {
 	char pad_char = ' ';
-	unsigned int pad = 1, sum = 0, ch = va_arg(ap, int);
+	unsigned int pad = 1, total = 0, ch = va_arg(list, int);
 
-	if (params->minus_flag)
-		sum += _putchar(ch);
-	while (pad++ < params->width)
-		sum += _putchar(pad_char);
-	if (!params->minus_flag)
-		sum += _putchar(ch);
-	return (sum);
+	if ((*flags).minus_flag)
+		total += _putchar(ch);
+	while (pad++ < (*flags).width)
+		total += _putchar(pad_char);
+	if (!(*flags).minus_flag)
+		total += _putchar(ch);
+	return (total);
 }
 
 /**
 *print_int - prints integer
 *
-*@ap: argument pointer
-*@params: the parameters struct
+*@list: argument pointer
+*@flags: the parameters struct
 *
 *Return: number chars printed
 */
-int print_int(va_list ap, params_t *params)
+int print_int(va_list list, flags_t *flags)
 {
-	long l;
+	long i;
 
-	if (params->l_modifier)
-		l = va_arg(ap, long);
-	else if (params->h_modifier)
-		l = (short int)va_arg(ap, int);
+	if ((*flags).l_modifier)
+		i = va_arg(list, long);
+	else if ((*flags).h_modifier)
+		i = (short int)va_arg(list, int);
 	else
-	l = (int)va_arg(ap, int);
-	return (print_number(convert(l, 10, 0, params), params));
+	i = (int)va_arg(list, int);
+	return (print_number(convert(i, 10, 0, flags), flags));
 }
 
 /**
 * print_string - prints string
 *
-* @ap: argument pointer
-* @params: the parameters struct
+* @list: argument pointer
+* @flags: the parameters struct
 *
 * Return: number chars printed.
 */
-int print_string(va_list ap, params_t *params)
+int print_string(va_list list, flags_t *flags)
 {
-	char *str = va_arg(ap, char *), pad_char = ' ';
-	unsigned int pad = 0, sum = 0, i = 0, j;
+	char *s = va_arg(list, char *), pad_char = ' ';
+	unsigned int pad = 0, total = 0, i = 0, j;
 
-	(void)params;
-	switch ((int)(!str))
+	(void)flags;
+	switch ((int)(!s))
 		case 1:
-			str = NULL_STRING;
-	j = pad = _strlen(str);
-	if (params->precision < pad)
-		j = pad = params->precision;
-	if (params->minus_flag)
+			s = NULL_STRING;
+	j = pad = _strlen(s);
+	if ((*flags).precision < pad)
+		j = pad = (*flags).precision;
+	if ((*flags).minus_flag)
 	{
-		if (params->precision != UINT_MAX)
+		if ((*flags).precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += _putchar(*str++);
+				total += _putchar(*s++);
 		else
-			sum += _puts(str);
+			total += _puts(s);
 	}
 
-	while (j++ < params->width)
-		sum += _putchar (pad_char);
-	if (!params->minus_flag)
+	while (j++ < (*flags).width)
+		total += _putchar(pad_char);
+	if (!(*flags).minus_flag)
 	{
-		if (params->precision != UINT_MAX)
+		if ((*flags).precision != UINT_MAX)
 			for (i = 0; i < pad; i++)
-				sum += _putchar(*str++);
+				total += _putchar(*s++);
 		else
-			sum += _puts(str);
+			total += _puts(s);
 	}
-	return (sum);
+	return (total);
 }
 
 /**
 * print_percent - prints string.
 *
-* @ap: argument pointer
-* @params: the parameters struct
+* @list: argument pointer
+* @flags: the parameters struct
 *
 *Return: number chars printed.
 */
-int print_percent(va_list ap, params_t *params)
+int print_percent(va_list list, flags_t *flags)
 {
-	(void)ap;
-	(void)params;
+	(void)list;
+	(void)flags;
 	return (_putchar('%'));
 }
 
 /**
 *print_S - custom format specifier
 *
-* @ap: argument pointer
-* @params: the parameters struct
+* @list: argument pointer
+* @flags: the parameters struct
 *
 *Return: number chars printed.
 */
 
-int print_S(va_list ap, params_t *params)
+int print_S(va_list list, flags_t *flags)
 {
-	char *str = va_arg(ap, char *);
-	char *hex;
-	int sum = 0;
+	char *s = va_arg(list, char *);
+	char *h;
+	int total = 0;
 
-	if ((int)(!str))
+	if ((int)(!s))
 		return (_puts(NULL_STRING));
-	for (; *str; str++)
+	for (; *s; s++)
 	{
-		if ((*str > 0 && *str < 32) || *str >= 127)
+		if ((*s > 0 && *s < 32) || *s >= 127)
 		{
-			sum += _putchar ('\\');
-			sum += _putchar ('x');
-			hex = convert(*str, 16, 0, params);
-			if (!hex[1])
-				sum += _putchar('0');
-			sum += _puts(hex);
+			total += _putchar('\\');
+			total += _putchar('x');
+			h = convert(*s, 16, 0, flags);
+			if (!h[1])
+				total += _putchar('0');
+			total += _puts(h);
 		}
 		else
 		{
-			sum += _putchar(*str);
+			total += _putchar(*s);
 		}
 	}
-	return (sum);
+	return (total);
 }
