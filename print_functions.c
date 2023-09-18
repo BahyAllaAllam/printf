@@ -40,7 +40,7 @@ int print_int(va_list list, flags_t *flags)
 	else if ((*flags).h_modifier)
 		i = (short int)va_arg(list, int);
 	else
-	i = (int)va_arg(list, int);
+		i = (int)va_arg(list, int);
 	return (print_number(convert(i, 10, 0, flags), flags));
 }
 
