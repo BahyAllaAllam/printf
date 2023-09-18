@@ -29,9 +29,9 @@ char *convert(long int n, int b, int f, flags_t *flags)
 	*p = '\0';
 
 	do	{
-		*--p = ar[n % b];
+		*--p = ar[num % b];
 		num /= b;
-	} while (n != 0);
+	} while (num != 0);
 
 	if (s)
 		*--p = s;
