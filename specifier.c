@@ -29,9 +29,9 @@ int (*get_specifier(char *ptr))(va_list list, flags_t *flags)
 	};
 	int i = 0;
 
-	while (speci[i].speci)
+	while (speci[i].specifier)
 	{
-		if (*ptr == speci[i].speci[0])
+		if (*ptr == speci[i].specifier[0])
 			return (speci[i].f);
 		i++;
 	}

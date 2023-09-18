@@ -17,7 +17,7 @@ char *convert(long int n, int b, int f, flags_t *flags)
 	char s = 0;
 	char *p;
 	unsigned long num = n;
-	(void)params;
+	(void)flags;
 
 	if (!(f & CONVERT_UNSIGNED) && n < 0)
 	{

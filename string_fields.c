@@ -28,6 +28,6 @@ char *get_precision(char *ptr, flags_t *flags, va_list list)
 			i = i * 10 + (*ptr++ - '0');
 		}
 	}
-	(*params).precision = i;
+	(*flags).precision = i;
 	return (ptr);
 }

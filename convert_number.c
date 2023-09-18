@@ -53,7 +53,7 @@ int print_HEX(va_list list, flags_t *flags)
 	else
 		l = (unsigned int)va_arg(list, unsigned int);
 	str = convert(l, 16, CONVERT_UNSIGNED, flags);
-	if ((*flags).ashtag_flag && l)
+	if ((*flags).hashtag_flag && l)
 	{
 		*--str = 'X';
 		*--str = '0';
