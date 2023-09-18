@@ -13,11 +13,9 @@ int _printf(const char *format, ...)
 	int total = 0;
 	char *ptr, *sta;
 	flags_t flags = PARAMS_INIT;
-
 	va_list list;
 
 	va_start(list, format);
-
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
