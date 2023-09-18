@@ -72,7 +72,7 @@ int print_address(va_list list, flags_t *flags)
 	char *s;
 
 	if (!i)
-		return (_puts("(nill)"));
+		return (_puts("(nil)"));
 	s = convert(i, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, flags);
 	*--s = 'x';
 	*--s = '0';
