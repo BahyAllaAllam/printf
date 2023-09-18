@@ -24,9 +24,7 @@ char *get_precision(char *ptr, flags_t *flags, va_list list)
 	else
 	{
 		while (_isdigit(*ptr))
-		{
 			i = i * 10 + (*ptr++ - '0');
-		}
 	}
 	(*flags).precision = i;
 	return (ptr);
