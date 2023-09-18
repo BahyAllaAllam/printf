@@ -9,10 +9,6 @@
 */
 int _printf(const char *format, ...)
 {
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
 
 	int total = 0;
 	char *ptr, *sta;
@@ -21,6 +17,12 @@ int _printf(const char *format, ...)
 	va_list list;
 
 	va_start(list, format);
+
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+
 
 	for (ptr = (char *)format; *ptr; ptr++)
 	{
