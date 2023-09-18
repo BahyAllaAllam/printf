@@ -59,7 +59,7 @@ int print_rot13(va_list list, flags_t *flags)
 {
 	int d = 0, n = 0, c = 0;
 	char ar[] =
-		"NOPQRSTUVWXYZABCDEFGHIJKLMN	nopqrstuvwxyzabcdefghijklm";
+		"NOPQRSTUVWXYZABCDEFGHIJKLM	nopqrstuvwxyzabcdefghijklm";
 	char *p = va_arg(list, char *);
 	(void)flags;
 
