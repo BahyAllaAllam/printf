@@ -130,7 +130,6 @@ int print_number_left_shift(char *s, flags_t *flags)
 	else
 		neg = 0;
 
-	neg = 0;
 	if ((*flags).plus_flag && !neg2 && !(*flags).unsign)
 		n += _putchar ('+'), i++;
 	else if ((*flags).space_flag && !neg2 && !(*flags).unsign)
